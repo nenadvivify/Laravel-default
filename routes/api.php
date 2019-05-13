@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use \App\Http\Middleware\CheckAge;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,11 +79,14 @@ Route::patch('/posts/{id}', function(int $id, Request $request) {
 });
 
 
+Route::post('/age', function() {
+	return 'Works';
+})->middleware('checkAge');
 
 
-
-
-
+Route::post('/restricted', function() {
+	return 'Lorem ipsum dolor sit amet.';
+})->middleware('checkAge', 'checkRole');
 
 
 
